@@ -94,7 +94,18 @@ And run:
 python -m pytest tests/
 ```
 
-## 6. Deploy in the cloud
+## 6. CI with Gihub Actions workflows
+
+The CI steps are defined in `.github/workflows/main.yml`.
+
+When it's triggered (for example on a `push`), you can see the build running in the "Actions" tab of Github:
+
+![alt tag](https://i.ibb.co/6YdMDXm/Screenshot-2021-05-17-at-23-11-57.png)
+
+Here it installs the libraries and runs the unit and integration tests.
+
+
+## 7. Deploy in the cloud
 
 Elasticsearch being not in free tier, I've simply prepared a terraform template for AWS ECS.
 
