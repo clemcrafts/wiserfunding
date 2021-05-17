@@ -12,7 +12,7 @@ It calculates and serve a Z-score is based on financial ratios of a company as f
 ![alt tag](https://i.ibb.co/T4qvcbQ/Screenshot-2021-05-17-at-22-31-35.png)
 
 
-## 1. API documentation 
+## 2. API documentation 
 
 The Swagger documentation is available in `/docs`.
 
@@ -29,7 +29,7 @@ The GET endpoint retrieves the Z-scores:
 ![alt tag](https://i.ibb.co/Cbb0JGd/Screenshot-2021-05-17-at-21-37-31.png)
 
 
-## 2. Run the application locally without docker
+## 3. Run the application locally without docker
 
 First, install the libraries:
 
@@ -63,7 +63,7 @@ And request the health check endpoint:
 http://localhost:8003/status
 ```
 
-## 3. Run the application with docker
+## 4. Run the application with docker
 
 Simply run:
 
@@ -78,7 +78,7 @@ http://0.0.0.0:8008/status
 ```
 
 
-## 4. Run the tests
+## 5. Run the tests
 
 If not done, install your virtual environment:
 
@@ -94,7 +94,7 @@ And run:
 python -m pytest tests/
 ```
 
-## 5. Deploy in the cloud
+## 6. Deploy in the cloud
 
 Elasticsearch being not in free tier, I've simply prepared a terraform template.
 
