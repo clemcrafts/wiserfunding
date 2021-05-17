@@ -1,21 +1,30 @@
-# Wiserfunding API
+# WiserFunding API
 
 This API calculates, stores and serves Z-scores for companies.
+
+## 1. Presentation
+
+
+This task is given by WiserFunding as a technical test.
+
+It calculates and serve a Z-score is based on financial ratios of a company as follows:
+
+![alt tag](https://i.ibb.co/T4qvcbQ/Screenshot-2021-05-17-at-22-31-35.png)
+
 
 ## 1. API documentation 
 
 The Swagger documentation is available in `/docs`.
-The best place for it would be in confluence, synchronised with the codebase file through the open API confluence plugin.
 
 ![alt tag](https://i.postimg.cc/y6bwg2dN/Screenshot-2021-05-17-at-21-28-44.png)
 
 
-The PUT endpoint allows you to calculate and store the Z-scores of a company based on its financials:
+The PUT endpoint calculates and stores based on financial ratios of a company:
 
 ![alt tag](https://i.ibb.co/cXRNcx7/Screenshot-2021-05-17-at-21-31-52.png)
 
 
-The GET endpoint allows you to retrieve former Z-scores of companies:
+The GET endpoint retrieves the Z-scores:
 
 ![alt tag](https://i.ibb.co/Cbb0JGd/Screenshot-2021-05-17-at-21-37-31.png)
 
@@ -54,7 +63,7 @@ And request the health check endpoint:
 http://localhost:8003/status
 ```
 
-## 3. Run the application with docher
+## 3. Run the application with docker
 
 Simply run:
 
