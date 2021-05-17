@@ -1,9 +1,10 @@
-flask-restful==0.3.7
-flask==1.0.2
+flask-restful==0.3.8
+flask==1.1.2
 gunicorn==19.9.0
 webargs==5.5.2
 marshmallow==3.2.1
 elasticsearch==6.3.1
-boto3==1.9.55
+boto3==1.17
 requests-aws4auth==0.9
 pytest==5.1.2
+itsdangerous==1.1.0
