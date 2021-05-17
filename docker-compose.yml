@@ -1,0 +1,32 @@
+---
+version: "2.1"
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    ports:
+      - 9200:9200
+      - 9300:9300
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200/_cat/health?v"]
+      interval: 5s
+      retries: 10
+    environment:
+      discovery.type: single-node
+    volumes:
+      - ~/elasticsearch:/usr/share/elasticsearch/data
+
+  wiserfunding_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8008:8008
+    depends_on:
+      - elasticsearch
+    restart: on-failure
+    environment:
+      LOG_LEVEL: INFO
+      ES_HOST: elasticsearch
+      ES_PORT: 9200
+

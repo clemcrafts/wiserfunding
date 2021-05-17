@@ -1,0 +1,146 @@
+
+openapi: 3.0.0
+info:
+  version: v1.0.0
+  title: Wiserfunding Z-Scores API
+  description: An API to calculate and retrieve Z-scores
+
+
+paths:
+  '/company/<country_code>/<company_id>':
+     put:
+       parameters:
+        - $ref: '#/components/parameters/country_code'
+        - $ref: '#/components/parameters/company_id'
+       requestBody:
+          description: The financials of the company on 5 years
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {"financials": [
+                          {"year": 2020,
+                           "ebit": 123.45,
+                           "equity": 234.56,
+                           "retained_earnings": 345.67,
+                           "sales": 1234.56,
+                           "total_assets": 345.67,
+                           "total_liabilities": 456.78},
+                          {"year": 2019,
+                           "ebit": 122.63,
+                           "equity": 224.56,
+                           "retained_earnings": 325.33,
+                           "sales": 1214.99,
+                           "total_assets": 325.04,
+                           "total_liabilities": 426.78},
+                          {"year": 2018,
+                          "ebit": 120.17,
+                          "equity": 214.06,
+                           "retained_earnings": 225.00,
+                           "sales": 1204.01,
+                           "total_assets": 305.11,
+                           "total_liabilities": 426.78},
+                          {"year": 2017,
+                          "ebit": 118.23,
+                          "equity": 204.96,
+                           "retained_earnings": 125.97,
+                           "sales": 1200.00,
+                           "total_assets": 290.75,
+                           "total_liabilities": 426.78},
+                          {"year": 2016,
+                          "ebit": 116.05,
+                          "equity": 234.56,
+                           "retained_earnings": 105.11,
+                           "sales": 1010.82,
+                           "total_assets": 250.13,
+                           "total_liabilities": 42.78}]}
+
+       summary: Calculate and store Z-scores for a given company and country
+       responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {
+                        	'scores': [{
+                        		'year': 2020,
+                        		'zscore': 6.144846255454092
+                        	 }, {
+                        		'year': 2019,
+                        		'zscore': 6.395165589110549
+                        	 }, {
+                        		'year': 2018,
+                        		'zscore': 6.216291793051449
+                        	 }, {
+                        		'year': 2017,
+                        		'zscore': 5.975450833426112
+                        	 }, {
+                        		'year': 2016,
+                        		'zscore': 13.484716441139247
+                        	 }]
+                         }
+
+  '/company/<country_code>/<company_id> ':
+    get:
+       parameters:
+        - $ref: '#/components/parameters/country_code'
+        - $ref: '#/components/parameters/company_id'
+
+       summary: Get the Z-scores for a given company and country
+       responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {
+                        	'scores': [{
+                        		'year': 2020,
+                        		'zscore': 6.144846255454092
+                        	 }, {
+                        		'year': 2019,
+                        		'zscore': 6.395165589110549
+                        	 }, {
+                        		'year': 2018,
+                        		'zscore': 6.216291793051449
+                        	 }, {
+                        		'year': 2017,
+                        		'zscore': 5.975450833426112
+                        	 }, {
+                        		'year': 2016,
+                        		'zscore': 13.484716441139247
+                        	 }]
+                         }
+
+  '/status':
+    get:
+      summary: Get status of the API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  is_alive:
+                    type: boolean
+components:
+  parameters:
+    company_id:
+      name: company_id
+      in: query
+      description: The ID of the company to calculate the Z-scores for
+      style: form
+      explode: false
+      schema:
+        type: integer
+    country_code:
+      name: country_code
+      in: query
+      description: ISO Alpha 2 country code
+      schema:
+        type: string
