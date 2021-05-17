@@ -96,10 +96,6 @@ python -m pytest tests/
 
 ## 6. Deploy in the cloud
 
-Elasticsearch being not in free tier, I've simply prepared a terraform template.
+Elasticsearch being not in free tier, I've simply prepared a terraform template for AWS ECS.
 
 The steps are in `terraform/README.md`
-
-
-
-
