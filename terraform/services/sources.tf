@@ -29,17 +29,3 @@ data "aws_subnet_ids" "private" {
     Tier = "Private"
   }
 }
-
-data "aws_sns_topic" "ops_email_alert" {
-  name = "SET-ME"
-}
-
-data "aws_caller_identity" "current" {}
-
-data "aws_elasticache_replication_group" "main" {
-  replication_group_id = "${var.redis_cluster_name}-${terraform.workspace}"
-}
-
-data "aws_s3_bucket" "translations" {
-  bucket = "dtc-translations-${terraform.workspace}"
-}

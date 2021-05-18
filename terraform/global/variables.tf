@@ -11,5 +11,5 @@ variable "aws_shared_credentials_file" {
 }
 
 variable "project_name" {
-  default = "dtc-api"
+  default = "wiserfunding-api"
 }

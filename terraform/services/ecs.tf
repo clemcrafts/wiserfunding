@@ -45,18 +45,6 @@ resource "aws_ecs_task_definition" "main" {
     ],
     "environment": [
       {
-        "name": "LOG_LEVEL",
-        "value": "${terraform.workspace == "dev" ? "DEBUG" : "INFO"}"
-      },
-      {
-        "name": "KAFKA_BROKERS",
-        "value": "${join(",", formatlist("%s:9092", data.aws_instances.kafka_brokers.private_ips))}"
-      },
-      {
-        "name": "KAFKA_GROUP_ID",
-        "value": "${var.project_name}-${var.application_id_version}"
-      },
-      {
         "name": "ES_HOST",
         "value": "${var.es_host}"
       },
@@ -75,18 +63,6 @@ resource "aws_ecs_task_definition" "main" {
       {
         "name": "APP_VERSION",
         "value": "${var.docker_image_tag}"
-      },
-      {
-        "name": "REDIS_HOST",
-        "value": "${data.aws_elasticache_replication_group.main.primary_endpoint_address}"
-      },
-      {
-        "name": "REDIS_PORT",
-        "value": "${data.aws_elasticache_replication_group.main.port}"
-      },
-      {
-        "name": "REDIS_SSL_ENABLED",
-        "value": "${var.redis_ssl_enabled}"
       }
     ]
   }
@@ -106,25 +82,7 @@ resource "aws_iam_policy" "es_service_role_policy" {
       "Action": [
         "es:*"
       ],
-      "Resource": "arn:aws:es:${var.aws_region}:${data.aws_caller_identity.current.account_id}:domain/dtc-${terraform.workspace}/*"
-    },
-    {
-        "Effect": "Allow",
-        "Action": [
-          "s3:ListBucket"
-        ],
-        "Resource": [
-          "${data.aws_s3_bucket.translations.arn}"
-        ]
-    },
-    {
-        "Effect": "Allow",
-        "Action": [
-            "s3:GetObject"
-        ],
-        "Resource": [
-          "${data.aws_s3_bucket.translations.arn}/*"
-        ]
+      "Resource": "arn:aws:es:${var.aws_region}:${"SET-ME"}:domain/dtc-${terraform.workspace}/*"
     }
   ]
 }

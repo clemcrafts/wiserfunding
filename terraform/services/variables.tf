@@ -12,7 +12,7 @@ variable "aws_shared_credentials_file" {
 }
 
 variable "project_name" {
-  default = "dtc-api"
+  default = "wiserfunding-api"
 }
 
 # Route 53
@@ -61,13 +61,3 @@ variable "es_host" {
   description = "ES domain endpoint. No default"
 }
 
-# Redis settings
-variable "redis_cluster_name" {
-  description = "Cluster name without environment suffix"
-  default     = "dtc"
-}
-
-variable "redis_ssl_enabled" {
-  description = "Is access to Redis encrypted in transit?"
-  default     = true
-}
