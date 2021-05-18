@@ -56,21 +56,3 @@ Variables are stored in different files as follow:
 ```console
 $ terraform apply -var-file="`terraform workspace show`.tfvars"
 ```
-
-When on dev, you may want to force the consumer to reconsume all messages.
-
-In this case, you can set the `application_id_version` variable to something random like so:
-
-> This makes use of the `$RANDOM` builtin variable.
-
-```console
-$ terraform apply -var-file="`terraform workspace show`.tfvars" -var application_id_version=${RANDOM}
-```
-
-or if you don't need a `tfvars` file:
-
-```console
-$ terraform apply -var application_id_version=${RANDOM}
-```
-
-This can be useful as it doesn't require a code change and applies to this one deployment only.

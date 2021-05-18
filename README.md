@@ -105,8 +105,27 @@ When it's triggered (for example on a `push`), you can see the build running in 
 Here it installs the libraries and runs the unit and integration tests.
 
 
-## 7. Deploy in the cloud
+## 7. Deploy the API in AWS
 
-Elasticsearch being not in free tier, I've simply prepared a terraform template for AWS ECS.
+The API is not deployed but I've prepared a terraform template for AWS ECS.
 
-The steps are in `terraform/README.md`
+The steps are in `terraform/README.md`.
+
+```console
+$ cd terraform/global
+$ terraform init
+$ terraform apply
+```
+
+Followed by:
+
+```console
+$ terraform workspace list  
+* default
+```
+
+And:
+
+```console
+$ terraform apply -var-file="`terraform workspace show`.tfvars"
+```
