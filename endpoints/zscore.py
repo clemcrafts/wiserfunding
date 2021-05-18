@@ -38,8 +38,8 @@ class Zscore(Resource):
             return {'scores': []}
         return ZscoreResponse().dump(
             {'scores':
-                 [{'zscore': records[year], 'year': year}
-                  for year in records.keys()]})
+             [{'zscore': records[year], 'year': year}
+              for year in records.keys()]})
 
     def _store(self, scores, parameters):
         """
@@ -56,16 +56,16 @@ class Zscore(Resource):
 
     def _search(self, parameters):
         """
-        Search a list of Z-score payloads
+        Searching a list of Z-score payloads
         :return dict z-scores: z-scores search results from Elasticsearch.
         """
         return ESClient().search(
          doc_type=Config.ES_DOC_TYPE,
          index=Config.ES_ZSCORES_INDEX,
          body={"query": {
-               "term": {
-               "_id": parameters['country_code']
-                      + str(parameters['company_id'])
-                 }
-                }
-              })
+                 "term": {
+                         "_id": parameters['country_code']
+                         + str(parameters['company_id'])
+                         }
+                        }
+               })
