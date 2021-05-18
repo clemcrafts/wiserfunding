@@ -26,23 +26,23 @@ def test_get_valid_query(monkeypatch):
                                      headers={
                                          'content-type': 'application/json'})
     assert response_data == {
-	'scores': [{
-		'year': 2020,
-		'zscore': 6.144846255454092
-	 }, {
-		'year': 2019,
-		'zscore': 6.395165589110549
-	 }, {
-		'year': 2018,
-		'zscore': 6.216291793051449
-	 }, {
-		'year': 2017,
-		'zscore': 5.975450833426112
-	 }, {
-		'year': 2016,
-		'zscore': 13.484716441139247
-	 }]
-    }
+            'scores': [{
+                'year': 2020,
+                'zscore': 6.144846255454092
+             }, {
+                'year': 2019,
+                'zscore': 6.395165589110549
+             }, {
+                'year': 2018,
+                'zscore': 6.216291793051449
+             }, {
+                'year': 2017,
+                'zscore': 5.975450833426112
+             }, {
+                'year': 2016,
+                'zscore': 13.484716441139247
+             }]
+            }
 
 
 def test_put_valid_query(monkeypatch):
@@ -60,23 +60,23 @@ def test_put_valid_query(monkeypatch):
                                      headers={
                                          'content-type': 'application/json'})
     assert response_data == {
-	'scores': [{
-		'zscore': 6.144846255454092,
-		'year': 2020
-	}, {
-		'zscore': 6.395165589110549,
-		'year': 2019
-	}, {
-		'zscore': 6.216291793051449,
-		'year': 2018
-	}, {
-		'zscore': 5.975450833426112,
-		'year': 2017
-	}, {
-		'zscore': 13.484716441139247,
-		'year': 2016
-	}]
-}
+            'scores': [{
+                'year': 2020,
+                'zscore': 6.07242023479448
+            }, {
+                'year': 2019,
+                'zscore': 6.324327195244421
+            }, {
+                'year': 2018,
+                'zscore': 6.100709234338317
+            }, {
+                'year': 2017,
+                'zscore': 5.80244252763309
+            }, {
+                'year': 2016,
+                'zscore': 10.44507680690473
+            }]
+        }
 
 
 @pytest.mark.parametrize('query',
@@ -153,7 +153,7 @@ def test_incorrect_financial_years_raise_validation_error(
                                      headers={
                                          'content-type': 'application/json'})
     assert response_data == {'message':
-                                 'Client error, please correct the request.',
+                             'Client error, please correct the request.',
                              'errors': {'financials': ['Length must be 5.']}}
 
 
@@ -162,32 +162,32 @@ def test_incorrect_financial_years_raise_validation_error(
     [(INVALID_PAYLOAD_TOTAL_ASSETS_IS_NULL,
       {'message': 'Client error, please correct the request.',
        'errors': {'financials': {'0':
-                                     {'total_assets': ['Invalid input.']},
+                                 {'total_assets': ['Invalid input.']},
                                  '1':
-                                     {'total_assets': ['Invalid input.']},
+                                 {'total_assets': ['Invalid input.']},
                                  '2':
-                                     {'total_assets': ['Invalid input.']},
+                                 {'total_assets': ['Invalid input.']},
                                  '3':
-                                     {'total_assets': ['Invalid input.']},
+                                 {'total_assets': ['Invalid input.']},
                                  '4':
-                                     {'total_assets': ['Invalid input.']}}}}),
+                                 {'total_assets': ['Invalid input.']}}}}),
      (INVALID_PAYLOAD_TOTAL_LIABILITIES_IS_NULL,
       {'message': 'Client error, please correct the request.',
        'errors': {'financials': {'0':
-                                     {'total_liabilities': ['Invalid input.']},
+                                 {'total_liabilities': ['Invalid input.']},
                                  '1':
-                                     {'total_liabilities': ['Invalid input.']},
+                                 {'total_liabilities': ['Invalid input.']},
                                  '2':
-                                     {'total_liabilities': ['Invalid input.']},
+                                 {'total_liabilities': ['Invalid input.']},
                                  '3':
-                                     {'total_liabilities': ['Invalid input.']},
+                                 {'total_liabilities': ['Invalid input.']},
                                  '4':
-                                     {'total_liabilities': ['Invalid input.']}
+                                 {'total_liabilities': ['Invalid input.']}
                                  }}})])
 def test_null_totals_raise_validation_error(financials, error, monkeypatch):
     """
-
-    :return:
+    Testing that total liabilities equal to 0 or total assets equal to 0
+    don't pass the validation.
     """
     query_result = Mock(return_value=Mock(
         search=Mock(

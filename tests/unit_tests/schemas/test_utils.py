@@ -12,4 +12,4 @@ def test_get_zscore():
                  "sales": 1234.56,
                  "total_assets": 345.67,
                  "total_liabilities": 456.78}
-    assert get_zscore(financial) == 6.144846255454092
+    assert get_zscore(financial) == 6.07242023479448
