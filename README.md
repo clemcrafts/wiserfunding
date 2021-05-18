@@ -129,3 +129,14 @@ And:
 ```console
 $ terraform apply -var-file="`terraform workspace show`.tfvars"
 ```
+
+
+## 8. Perspectives
+
+This API is just a demo, developed with extreme simplicity in mind.
+To be production ready:
+
+- The GET endpoint needs a cache (a couple of seconds) preventing from DDOS attacks.
+- The Elasticsearch instance reconnects with the database at each call. To improve, not acceptable, even with the cache.
+- We need a third layer/repository of tests (end-2-end) using Cucumber calling the docker image directly.
+- A design/whiteboard discussion on the data contracts, the endpoints, the currencies but also the naming of the field that I would probably challenge.
